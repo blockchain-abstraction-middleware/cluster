@@ -1,31 +1,28 @@
 provider "digitalocean" {
   token = "${var.do_token}"
 }
-module "cluster" { 
-  source        = "../../../modules/do-cluster" 
-  cluster_name  = "staging"
-}
-output "kube_config" {
-  value = "${module.cluster.kube_config}"
+module "k8s_cluster" {
+  source       = "../../../modules/do-cluster"
+  cluster_name = "staging"
 }
 output "cluster_id" {
-  value = "${module.cluster.cluster_id}"
+  value = "${module.k8s_cluster.cluster_id}"
 }
 output "host" {
-  value = "${module.cluster.host}"
+  value = "${module.k8s_cluster.host}"
 }
 output "port" {
-  value = "${module.cluster.port}"
+  value = "${module.k8s_cluster.port}"
 }
 output "database" {
-  value = "${module.cluster.database}"
+  value = "${module.k8s_cluster.database}"
 }
 output "user" {
-  value = "${module.cluster.user}"
+  value = "${module.k8s_cluster.user}"
 }
 output "password" {
-  value = "${module.cluster.password}"
+  value = "${module.k8s_cluster.password}"
 }
 output "uri" {
-  value = "${module.cluster.uri}"
+  value = "${module.k8s_cluster.uri}"
 }

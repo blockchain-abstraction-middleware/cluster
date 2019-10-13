@@ -1,7 +1,7 @@
 resource "digitalocean_kubernetes_cluster" "main" {
   name    = "${var.cluster_name}"
   region  = "fra1"
-  version = "1.15.3-do.2"
+  version = "1.15.4-do.0"
 
 
   node_pool {
@@ -14,4 +14,12 @@ resource "digitalocean_kubernetes_cluster" "main" {
   #   auto_repair  = true
   #   auto_upgrade = true
   # }
+}
+
+resource "null_resource" "get_kube_config" {
+  depends_on = ["digitalocean_kubernetes_cluster.main"]
+
+  provisioner "local-exec" {
+    command = "echo '${digitalocean_kubernetes_cluster.main.kube_config.0.raw_config}' >> ~/.kube/config"
+  }
 }

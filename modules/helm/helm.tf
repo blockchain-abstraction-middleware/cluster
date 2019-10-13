@@ -1,40 +1,11 @@
-resource "kubernetes_service_account" "helm" {
-  metadata {
-    name = "helm"
-    namespace = "kube-system"
-  }
+provider "helm" {
+  install_tiller  = true
+  service_account = "tiller"
 }
 
-resource "kubernetes_cluster_role_binding" "helm" {
-  metadata {
-    name = "helm"
-  }
-  role_ref {
-    api_group = "rbac.authorization.k8s.io"
-    kind      = "ClusterRole"
-    name      = "cluster-admin"
-  }
-  subject {
-    kind      = "User"
-    name      = "admin"
-    api_group = "rbac.authorization.k8s.io"
-  }
-  subject {
-    kind      = "ServiceAccount"
-    name      = "helm"
-    namespace = "kube-system"
-  }
-  subject {
-    kind      = "Group"
-    name      = "system:masters"
-    api_group = "rbac.authorization.k8s.io"
+# This is hacky, for some reason helm doesn't install with the `provider`
+resource "null_resource" "install_helm" {
+  provisioner "local-exec" {
+    command = "helm init --service-account tiller"
   }
 }
-
-# provider "helm" {
-#   kubernetes {
-#     config_path = "~/.kube/config"
-#   }
-#   install_tiller = true
-#   service_account = "helm"
-# }
