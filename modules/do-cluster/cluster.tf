@@ -19,6 +19,10 @@ resource "digitalocean_kubernetes_cluster" "main" {
 resource "null_resource" "get_kube_config" {
   depends_on = ["digitalocean_kubernetes_cluster.main"]
 
+  triggers = {
+    cluster_instance_id = "${digitalocean_kubernetes_cluster.main.id}"
+  }
+
   provisioner "local-exec" {
     command = "echo '${digitalocean_kubernetes_cluster.main.kube_config.0.raw_config}' >> ~/.kube/config"
   }

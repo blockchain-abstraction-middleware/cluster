@@ -1,11 +1,14 @@
-# data "helm_repository" "istio-release" {
-#   name = "istio-release"
-#   url  = "https://storage.googleapis.com/istio-release/releases/1.3.2/charts/"
-# }
+data "helm_repository" "istio-release" {
+  name = "istio-release"
+  url  = "https://storage.googleapis.com/istio-release/releases/1.3.2/charts/"
+}
 
-#   url  = "https://storage.googleapis.com//releases"
+output "istio" {
+  value = "${data.helm_repository.istio-release}"
+}
 
 # resource "helm_release" "istio-release" {
+#   depends_on = ["null_resource.install_helm"]
 #   name       = "istio-release"
 #   repository = "${data.helm_repository.istio-release.metadata.0.name}"
 #   chart      = "istio"
