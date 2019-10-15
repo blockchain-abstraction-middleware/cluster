@@ -49,6 +49,3 @@ See new namespaces:
 ```shell
 make destroy
 ```
-
-### Beware of Dragons
-- Please run the steps in order!
