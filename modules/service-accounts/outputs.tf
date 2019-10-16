@@ -1,3 +1,3 @@
-output "load_config_file" {
-  value = true
+output "kubernetes_service_account_id" {
+  value = "${kubernetes_service_account.tiller.id}"
 }

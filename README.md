@@ -15,12 +15,13 @@ make deploy
 ```
 This will deploy a k8s cluster and download the `kube_config`
 
+It also generates a `input.tfvars.json` file that is used in step 2
+
 ### Step 2
 - Setup k8s cluster
 ```shell
 make setup
 ```
-Running this step must be ran directly after Step 1 as it has dependancies on `terraform output`
 
 ### Validations
 Run the following commands to validate everything has worked correctly
@@ -28,7 +29,7 @@ Run the following commands to validate everything has worked correctly
 ```shell
 kubectl get pods --all-namespaces
 ```
-See pod:
+See pod: 
 - tiller-deploy
 
 ```shell

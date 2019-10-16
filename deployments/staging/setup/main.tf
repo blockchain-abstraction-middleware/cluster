@@ -21,5 +21,5 @@ module "service_accounts" {
 
 module "cluster_helm" {
   source = "../../../modules/helm"
-  config = "${module.service_accounts.load_config_file}"
+  kubernetes_service_account_id = "${module.service_accounts.kubernetes_service_account_id}"
 }

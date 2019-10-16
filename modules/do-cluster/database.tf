@@ -12,7 +12,7 @@ resource "null_resource" "set_tf_vars" {
   depends_on = ["digitalocean_database_cluster.pg"]
 
   triggers = {
-    cluster_instance_id = "${digitalocean_database_cluster.pg.id}"
+    db_instance_id = "${digitalocean_database_cluster.pg.id}"
   }
 
   provisioner "local-exec" {
