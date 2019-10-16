@@ -6,7 +6,7 @@ resource "digitalocean_kubernetes_cluster" "main" {
 
   node_pool {
     name       = "api-go"
-    size       = "s-1vcpu-2gb"
+    size       = "s-2vcpu-4gb"
     node_count = 3
   }
 

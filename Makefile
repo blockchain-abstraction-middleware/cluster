@@ -16,14 +16,20 @@ setup:
 	./deployments/staging/setup
 	
 destroy:
+	# terraform workspace select setup
+	# terraform init ./deployments/staging/setup
+	# terraform destroy -force -var-file="input.tfvars.json" ./deployments/staging/setup
+
 	terraform workspace select deploy-cluster
 	terraform init ./deployments/staging/cluster
 	terraform destroy -force ./deployments/staging/cluster
 
+	rm input.tfvars.json
+
 destroy_setup:
-	terraform workspace select helm
-	terraform init ./helm
-	terraform destroy -force ./helm
+	terraform workspace select setup
+	terraform init ./deployments/staging/setup
+	terraform destroy -force -var-file="input.tfvars.json" ./deployments/staging/setup
 
 .PHONY: \
 	deploy \
