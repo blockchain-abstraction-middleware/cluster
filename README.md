@@ -29,8 +29,11 @@ Run the following commands to validate everything has worked correctly
 ```shell
 kubectl get pods --all-namespaces
 ```
-See pod: 
+See pods: 
 - tiller-deploy
+- istio-citadel
+- istio-pilot
+- istio-ingressgateway
 
 ```shell
 kubectl get serviceaccounts --all-namespaces
@@ -50,3 +53,6 @@ See new namespaces:
 ```shell
 make destroy
 ```
+
+## Beware of Dragons
+1. `make setup` needs to be ran twice, race condition between installing istio crds and installing istio
