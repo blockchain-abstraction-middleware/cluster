@@ -23,3 +23,8 @@ module "cluster_helm" {
   source = "../../../modules/helm"
   kubernetes_service_account_id = "${module.service_accounts.kubernetes_service_account_id}"
 }
+
+module "secrets" {
+  source = "../../../modules/secrets"
+  key_location = "deployments/staging/setup/secring.gpg"
+}

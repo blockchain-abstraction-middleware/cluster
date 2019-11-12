@@ -1,0 +1,1 @@
+variable "key_location" { default = "deployments/staging/setup/secring.gpg" }
