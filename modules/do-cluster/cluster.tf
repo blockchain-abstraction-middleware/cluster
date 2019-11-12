@@ -9,11 +9,6 @@ resource "digitalocean_kubernetes_cluster" "main" {
     size       = "s-2vcpu-4gb"
     node_count = 3
   }
-
-  # management {
-  #   auto_repair  = true
-  #   auto_upgrade = true
-  # }
 }
 
 resource "null_resource" "get_kube_config" {

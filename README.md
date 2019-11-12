@@ -19,6 +19,9 @@ It also generates a `input.tfvars.json` file that is used in step 2
 
 ### Step 2
 - Setup k8s cluster
+
+*Ensure you have exported your pgp key to `./*/setup/secring.pgp`*
+
 ```shell
 make setup
 ```
